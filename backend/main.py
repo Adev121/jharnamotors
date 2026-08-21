@@ -22,24 +22,11 @@ app = FastAPI(
 # Allow frontend to communicate with backend
 
 app.add_middleware(
-
     CORSMiddleware,
-
-    allow_origins=[
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "https://jharnamotors-backend.onrender.com",
-        "https://jharnamotors.onrender.com",
-        "https://jharnamotors.onrender.com/*",
-        "https://jharnamotors-frontend.onrender.com"
-    ],
-
-    allow_credentials=True,
-
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
-
     allow_headers=["*"],
-
 )
 
 
