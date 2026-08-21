@@ -141,7 +141,7 @@ a {
     padding: 100px 8%;
 
     background:
-        url("images/hero.png")
+        url("./images/hero.png")
         center/cover no-repeat;
 }
 
