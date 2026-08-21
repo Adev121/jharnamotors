@@ -69,6 +69,7 @@ const questions =
 
 
 let currentQuestionIndex = 0;
+
 const userAnswers = new Array(
     questions.length
 ).fill(null);
