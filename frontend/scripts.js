@@ -65,11 +65,12 @@ enquiryForm.addEventListener("submit", async function (event) {
 
         formMessage.style.color =
             "#f59e0b";
+        const API_URL="https://jharnamotors-backend.onrender.com"
 
 
         const response = await fetch(
 
-            "http://127.0.0.1:8000/api/enquiry",
+            `${API_URL}/api/enquiry`,
 
             {
                 method: "POST",
