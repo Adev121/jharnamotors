@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Driving Practice Test | JHARNA</title>
+    <link
+        rel="stylesheet"
+        href="test.css"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+</head>
+<body>
+<div class="exam-page">
+    <!-- TOP HEADER -->
+    <header class="exam-header">
+        <div class="exam-brand">
+            <a
+    href="../index.html"
+    class="back-home"
+>
+    ← Back to Home
+</a>
+            <a
+                href="../index.html"
+                class="logo"
+            >
+                <div class="logo-icon">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <div>
+                    <span>JHARNA</span>
+                    <small>Learner's Licence Practice Test</small>
+                </div>
+            </a>
+        </div>
+        <div class="timer-box">
+            <span>
+                ⏱ Time Left
+            </span>
+            <strong id="timer">
+                15:00
+            </strong>
+        </div>
+    </header>
+    <!-- EXAM CONTENT -->
+    <div class="exam-layout">
+        <!-- QUESTION AREA -->
+        <main class="question-section">
+            <div class="question-top">
+                <div>
+                    <span class="question-number">
+                        Question
+                        <strong id="currentQuestion">
+                            1
+                        </strong>
+                        /
+                        <span id="totalQuestions">
+                            20
+                        </span>
+                    </span>
+                </div>
+                <span
+                    id="questionCategory"
+                    class="category-badge"
+                >
+                    Driving Rules
+                </span>
+            </div>
+            <div class="progress-bar">
+                <div
+                    id="progress"
+                    class="progress"
+                ></div>
+            </div>
+            <!-- QUESTION CARD -->
+            <div class="question-card">
+                <!-- Optional sign image -->
+                <div
+                    id="questionImageContainer"
+                    class="question-image-container hidden"
+                >
+                    <img
+                        id="questionImage"
+                        src=""
+                        alt="Traffic Sign"
+                    >
+                </div>
+                <h2 id="questionText">
+                    Loading question...
+                </h2>
+                <div
+                    id="optionsContainer"
+                    class="options-container"
+                >
+                </div>
+            </div>
+            <!-- BUTTONS -->
+            <div class="question-actions">
+                <button
+                    id="prevBtn"
+                    class="secondary-btn"
+                >
+                    ← Previous
+                </button>
+                <button
+                    id="reviewBtn"
+                    class="review-btn"
+                >
+                    ☆ Mark for Review
+                </button>
+                <button
+                    id="nextBtn"
+                    class="primary-btn"
+                >
+                    Save & Next →
+                </button>
+            </div>
+        </main>
+        <!-- QUESTION PALETTE -->
+        <aside class="question-sidebar">
+            <div class="palette-header">
+                <h3>
+                    Question Palette
+                </h3>
+                <p>
+                    Click a question number to navigate
+                </p>
+            </div>
+            <div
+                id="questionPalette"
+                class="question-palette"
+            >
+            </div>
+            <!-- LEGEND -->
+            <div class="status-legend">
+                <h4>
+                    Question Status
+                </h4>
+                <div>
+                    <span class="legend answered"></span>
+                    Answered
+                </div>
+                <div>
+                    <span class="legend unanswered"></span>
+                    Not Answered
+                </div>
+                <div>
+                    <span class="legend review"></span>
+                    Marked for Review
+                </div>
+                <div>
+                    <span class="legend current"></span>
+                    Current Question
+                </div>
+            </div>
+            <button
+                id="submitTestBtn"
+                class="submit-test-btn"
+            >
+                Submit Test
+            </button>
+        </aside>
+    </div>
+</div>
+<script src="questions.js"></script>
+<script src="test.js"></script>
+</body>
+</html>
