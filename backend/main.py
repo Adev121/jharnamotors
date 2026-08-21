@@ -58,7 +58,7 @@ def home():
 # SAVE ENQUIRY
 # ==========================
 
-@app.post("/api/enquiry")
+@app.post("/enquiry")
 def create_enquiry(
 
     enquiry: schemas.EnquiryCreate,

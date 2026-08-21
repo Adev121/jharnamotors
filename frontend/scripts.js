@@ -70,7 +70,7 @@ enquiryForm.addEventListener("submit", async function (event) {
 
         const response = await fetch(
 
-            `${API_URL}/api/enquiry`,
+            `${API_URL}/enquiry`,
 
             {
                 method: "POST",
