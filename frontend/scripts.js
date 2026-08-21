@@ -1,3 +1,5 @@
+// API URL
+const API_URL="https://jharnamotors-backend.onrender.com"
 // ================= FAQ =================
 
 const faqQuestions = document.querySelectorAll(".faq-question");
@@ -65,9 +67,6 @@ enquiryForm.addEventListener("submit", async function (event) {
 
         formMessage.style.color =
             "#f59e0b";
-        const API_URL="https://jharnamotors-backend.onrender.com"
-
-
         const response = await fetch(
 
             `${API_URL}/enquiry`,
@@ -138,6 +137,32 @@ enquiryForm.addEventListener("submit", async function (event) {
     }
 
 });
+// Track Visitors
+
+async function trackVisitor() {
+    try {
+        await fetch(
+            `${API_URL}/track-visit`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+                body: JSON.stringify({
+                    page:
+                        window.location.pathname
+                })
+            }
+        );
+    }
+    catch (error) {
+        console.log(
+            "Visitor tracking failed"
+        );
+    }
+}
+trackVisitor();
 
 
 // ================= CHATBOT =================

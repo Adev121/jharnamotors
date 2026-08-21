@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JHARNA Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🚗 JHARNA</h2>
+                <p>Admin Dashboard</p>
+            </div>
+            <nav>
+                <a href="#dashboard">
+                    📊 Dashboard
+                </a>
+                <a href="#enquiries">
+                    📩 Enquiries
+                </a>
+                <a href="#visitors">
+                    👥 Visitors
+                </a>
+                <a href="#">
+                    ⚙ Settings
+                </a>
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout-button"
+                >
+                    Logout
+                </button>
+            </nav>
+        </aside>
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>
+                        Welcome to JHARNA Motor Training School
+                    </p>
+                </div>
+                <div class="admin-profile">
+                    👤 Admin
+                </div>
+            </header>
+            <!-- STATISTICS CARDS -->
+            <section class="stats-container">
+                <div class="stat-card">
+                    <div>
+                        <p>Total Enquiries</p>
+                        <h2 id="totalEnquiries">
+                            0
+                        </h2>
+                    </div>
+                    <span>📩</span>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <p>Total Visitors</p>
+                        <h2 id="totalVisitors">
+                            0
+                        </h2>
+                    </div>
+                    <span>👥</span>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <p>Today's Visitors</p>
+                        <h2 id="todayVisitors">
+                            0
+                        </h2>
+                    </div>
+                    <span>📈</span>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <p>Today's Enquiries</p>
+                        <h2 id="todayEnquiries">
+                            0
+                        </h2>
+                    </div>
+                    <span>🚗</span>
+                </div>
+            </section>
+            <!-- CHARTS -->
+            <section class="charts-container">
+                <div class="chart-card">
+                    <h3>
+                        Website Visitors
+                    </h3>
+                    <canvas id="visitorChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>
+                        Enquiries Overview
+                    </h3>
+                    <canvas id="enquiryChart"></canvas>
+                </div>
+            </section>
+            <!-- ENQUIRIES -->
+            <section class="enquiry-section">
+                <div class="section-header">
+                    <h2>
+                        Recent Enquiries
+                    </h2>
+                    <input type="text" id="searchInput" placeholder="Search enquiries...">
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Location</th>
+                                <th>Query</th>
+                            </tr>
+                        </thead>
+                        <tbody id="enquiryTable">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
