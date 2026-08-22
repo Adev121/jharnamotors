@@ -125,12 +125,17 @@ def get_enquiries(db: Session = Depends(get_db),
 # Stats
 
 @app.get("/dashboard/stats")
-def dashboard_stats(db: Session = Depends(get_db)):
+def dashboard_stats(
+    db: Session = Depends(get_db),
+    current_admin: str = Depends(get_current_admin)
+):
 
     total_enquiries = db.query(models.Enquiry).count()
+    total_visitors = db.query(models.Visitor).count()
 
     return {
-        "total_enquiries": total_enquiries
+        "total_enquiries": total_enquiries,
+        "total_visitors": total_visitors
     }
 
 # charts

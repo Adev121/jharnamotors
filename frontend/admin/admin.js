@@ -54,6 +54,9 @@ async function loadEnquiries() {
                 <td>${enquiry.phone}</td>
                 <td>${enquiry.location}</td>
                 <td>${enquiry.query}</td>
+                <td>${enquiry.created_at
+                    ? new Date(enquiry.created_at).toLocaleString()
+                    : "-"}</td>
             `;
             table.appendChild(row);
         });
@@ -66,6 +69,38 @@ async function loadEnquiries() {
     }
 }
 loadEnquiries();
+
+async function loadDashboardStats() {
+    try {
+        const response =
+            await fetch(
+                `${API_URL}/dashboard/stats`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+        if (!response.ok) {
+            throw new Error(
+                `Dashboard stats request failed: ${response.status}`
+            );
+        }
+        const stats =
+            await response.json();
+        document.getElementById(
+            "totalVisitors"
+        ).textContent =
+            stats.total_visitors;
+    }
+    catch (error) {
+        console.error(
+            "Error loading dashboard stats:",
+            error
+        );
+    }
+}
+loadDashboardStats();
 
 document.getElementById("searchInput").addEventListener(
         "input",
