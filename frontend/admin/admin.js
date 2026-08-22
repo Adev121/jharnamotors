@@ -4,6 +4,9 @@ const API_URL =
 
 const token =
     localStorage.getItem("admin_token");
+const enquiriesPerPage = 6;
+let enquiries = [];
+let currentPage = 1;
 
 
 if (!token) {
@@ -34,18 +37,51 @@ async function loadEnquiries() {
                     "Authorization": `Bearer ${token}`
                 }
             });
-        const enquiries =
+        enquiries =
             await response.json();
         document.getElementById(
             "totalEnquiries"
         ).textContent =
             enquiries.length;
-        const table =
-            document.getElementById(
-                "enquiryTable"
-            );
-        table.innerHTML = "";
-        enquiries.forEach((enquiry) => {
+        renderEnquiries();
+    }
+    catch (error) {
+        console.error(
+            "Error loading enquiries:",
+            error
+        );
+    }
+}
+
+function renderEnquiries() {
+    const searchText =
+        document.getElementById("searchInput")
+            .value.toLowerCase();
+    const filteredEnquiries =
+        enquiries.filter((enquiry) =>
+            Object.values(enquiry).some((value) =>
+                String(value).toLowerCase().includes(searchText)
+            )
+        );
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredEnquiries.length / enquiriesPerPage
+            )
+        );
+    currentPage = Math.min(currentPage, totalPages);
+    const startIndex =
+        (currentPage - 1) * enquiriesPerPage;
+    const visibleEnquiries =
+        filteredEnquiries.slice(
+            startIndex,
+            startIndex + enquiriesPerPage
+        );
+    const table =
+        document.getElementById("enquiryTable");
+    table.innerHTML = "";
+    visibleEnquiries.forEach((enquiry) => {
             const row =
                 document.createElement("tr");
             row.innerHTML = `
@@ -60,13 +96,49 @@ async function loadEnquiries() {
             `;
             table.appendChild(row);
         });
+    renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+    const pagination =
+        document.getElementById("pagination");
+    pagination.innerHTML = "";
+    if (enquiries.length <= enquiriesPerPage &&
+        document.getElementById("searchInput").value === "") {
+        return;
     }
-    catch (error) {
-        console.error(
-            "Error loading enquiries:",
-            error
+    const previousButton =
+        document.createElement("button");
+    previousButton.textContent = "Previous";
+    previousButton.disabled = currentPage === 1;
+    previousButton.addEventListener("click", function () {
+        currentPage--;
+        renderEnquiries();
+    });
+    pagination.appendChild(previousButton);
+    for (let page = 1; page <= totalPages; page++) {
+        const pageButton =
+            document.createElement("button");
+        pageButton.textContent = page;
+        pageButton.classList.toggle(
+            "active",
+            page === currentPage
         );
+        pageButton.addEventListener("click", function () {
+            currentPage = page;
+            renderEnquiries();
+        });
+        pagination.appendChild(pageButton);
     }
+    const nextButton =
+        document.createElement("button");
+    nextButton.textContent = "Next";
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener("click", function () {
+        currentPage++;
+        renderEnquiries();
+    });
+    pagination.appendChild(nextButton);
 }
 loadEnquiries();
 
@@ -105,24 +177,8 @@ loadDashboardStats();
 document.getElementById("searchInput").addEventListener(
         "input",
         function () {
-            const searchText =
-                this.value.toLowerCase();
-            const rows =
-                document.querySelectorAll(
-                    "#enquiryTable tr"
-                );
-            rows.forEach((row) => {
-                const text =
-                    row.textContent.toLowerCase();
-                if (
-                    text.includes(searchText)
-                ) {
-                    row.style.display = "";
-                }
-                else {
-                    row.style.display = "none";
-                }
-            });
+            currentPage = 1;
+            renderEnquiries();
         }
     );
 
