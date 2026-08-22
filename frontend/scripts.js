@@ -1,5 +1,34 @@
 // API URL
 const API_URL="https://jharnamotors-backend.onrender.com"
+
+const menuButton = document.getElementById("menuBtn");
+const navigation = document.querySelector(".navbar");
+const registerButton = document.querySelector(".nav-btn");
+
+menuButton.addEventListener("click", function () {
+    const isOpen =
+        menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!isOpen));
+    menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Open navigation menu" : "Close navigation menu"
+    );
+    navigation.classList.toggle("active", !isOpen);
+    registerButton.classList.toggle("active", !isOpen);
+});
+
+navigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", function () {
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+        );
+        navigation.classList.remove("active");
+        registerButton.classList.remove("active");
+    });
+});
+
 // ================= FAQ =================
 
 const faqQuestions = document.querySelectorAll(".faq-question");

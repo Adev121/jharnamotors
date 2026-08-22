@@ -993,6 +993,33 @@ a {
         display: none;
     }
 
+    .navbar.active {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 8%;
+        background: rgba(17, 24, 39, 0.98);
+    }
+
+    .navbar.active a {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn.active {
+        position: absolute;
+        top: 80px;
+        left: 8%;
+        right: 8%;
+        display: block;
+        margin-top: 306px;
+        text-align: center;
+    }
+
     .menu-btn {
         display: block;
     }
