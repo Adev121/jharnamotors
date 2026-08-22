@@ -79,6 +79,18 @@ body {
     color: #6b7280;
     margin-top: 5px;
 }
+
+    .back-home-link {
+        display: inline-block;
+        margin-bottom: 24px;
+        color: #6b7280;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    .back-home-link:hover {
+        color: #f59e0b;
+    }
 /* STATS */
 .stats-container {
     display: grid;
@@ -142,6 +154,22 @@ body {
     padding: 10px 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
+}
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.export-button {
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 8px;
+    background: #f59e0b;
+    color: white;
+    cursor: pointer;
+}
+.export-button:hover {
+    background: #d97706;
 }
 .table-container {
     overflow-x: auto;

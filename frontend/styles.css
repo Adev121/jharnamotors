@@ -835,6 +835,19 @@ a {
     margin-top: 10px;
 }
 
+.admin-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--primary);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.admin-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
 /* ================= CHATBOT ================= */
 
 .chatbot-container {

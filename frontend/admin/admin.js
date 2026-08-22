@@ -142,6 +142,49 @@ function renderPagination(totalPages) {
 }
 loadEnquiries();
 
+function escapeCsvValue(value) {
+    const stringValue =
+        value === null || value === undefined
+            ? ""
+            : String(value);
+    return `"${stringValue.replaceAll('"', '""')}"`;
+}
+
+document
+    .getElementById("exportCsvButton")
+    .addEventListener("click", function () {
+        const headers = [
+            "Name",
+            "Email",
+            "Phone",
+            "Location",
+            "Query",
+            "Date"
+        ];
+        const rows = enquiries.map((enquiry) => [
+            enquiry.full_name,
+            enquiry.email,
+            enquiry.phone,
+            enquiry.location,
+            enquiry.query,
+            enquiry.created_at
+                ? new Date(enquiry.created_at).toLocaleString()
+                : ""
+        ]);
+        const csv = [headers, ...rows]
+            .map((row) => row.map(escapeCsvValue).join(","))
+            .join("\r\n");
+        const blob = new Blob(["\uFEFF" + csv], {
+            type: "text/csv;charset=utf-8;"
+        });
+        const downloadUrl = URL.createObjectURL(blob);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = "enquiries.csv";
+        downloadLink.click();
+        URL.revokeObjectURL(downloadUrl);
+    });
+
 async function loadDashboardStats() {
     try {
         const response =
