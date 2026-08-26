@@ -700,9 +700,15 @@ a {
     .whatsapp-float {
         width: 55px;
         height: 55px;
+        right: 20px;
+        bottom: 100px;   /* move WhatsApp above chatbot */
+        font-size: 29px;
+        z-index: 1000;
+    }
+
+    .chatbot-container {
         right: 18px;
         bottom: 18px;
-        font-size: 29px;
     }
 }
 /* ================= MOBILE ================= */
